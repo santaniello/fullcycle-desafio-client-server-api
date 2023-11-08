@@ -16,24 +16,18 @@ func main() {
 }
 
 func cotar(rw http.ResponseWriter, req *http.Request) {
-	/*
-		vars := mux.Vars(req)
-		cambioParam := vars["cambio"]
-		if cambioParam == "" {
-			rw.WriteHeader(http.StatusBadRequest)
-			return
-		}
-	*/
 	cotacaoInfos, err := cotacao.Cotar("USD-BRL")
 	if err != nil {
 		fmt.Println(err)
 		rw.WriteHeader(http.StatusInternalServerError)
+		fmt.Println(err)
 		return
 	}
 	repository, err := cotacao.NewCotacaoRepository("./cotacao.db")
 	if err != nil {
 		fmt.Println(err)
 		rw.WriteHeader(http.StatusInternalServerError)
+		fmt.Println(err)
 		return
 	}
 	defer repository.Close()
@@ -42,6 +36,7 @@ func cotar(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 		rw.WriteHeader(http.StatusInternalServerError)
+		fmt.Println(err)
 		return
 	}
 

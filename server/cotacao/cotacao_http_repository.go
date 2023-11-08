@@ -11,7 +11,7 @@ import (
 )
 
 const url = "https://economia.awesomeapi.com.br/json/last/"
-const timeout = 800000 * time.Millisecond
+const timeout = 200 * time.Millisecond
 
 func Cotar(cambio string) (*Cotacao, error) {
 	res, err := doRequestWithContext(cambio)

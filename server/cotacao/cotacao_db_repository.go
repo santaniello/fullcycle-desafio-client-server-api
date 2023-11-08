@@ -3,6 +3,7 @@ package cotacao
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"time"
@@ -28,6 +29,7 @@ func (cr *CotacaoRepository) Save(bid string) error {
 	cr.createTableCotacaoIfNotExists()
 	statement, err := cr.db.PrepareContext(ctx, "INSERT INTO cotacao (bid) VALUES (?)")
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	_, err = statement.Exec(bid)
